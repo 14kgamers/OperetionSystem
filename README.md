@@ -82,4 +82,41 @@ Implementar um programa em **Python** para demonstrar o funcionamento do coletor
 
 ---
 
-#
+### Questão 5: Comparação de Desempenho de Alocação
+
+#### Objetivo:
+Comparar o desempenho da alocação de memória na **pilha** e no **heap**.
+
+1. Medir o tempo de execução para criar e destruir 1.000.000 de variáveis locais (pilha) e alocar/desalocar 1.000.000 de objetos dinamicamente (heap).
+2. Comparar os tempos de execução e calcular a diferença percentual de desempenho.
+
+#### Código:
+- **Linguagem**: C, Python ou Java
+- **Funções principais**:
+    - Medição do tempo de execução utilizando `time.time()` ou `System.nanoTime()`.
+
+---
+
+### Questão Bônus: Implementação de Algoritmo LRU
+
+#### Objetivo:
+Implementar o algoritmo de substituição de página **LRU** (Least Recently Used) e comparar com o algoritmo **FIFO**.
+
+1. Receber como entrada o número de frames e uma sequência de referências.
+2. Implementar o algoritmo LRU, mantendo registro do tempo de uso de cada página.
+3. Comparar os resultados do LRU com o FIFO, exibindo o número de faltas de página e a taxa de faltas.
+
+#### Código:
+- **Linguagem**: Python, C ou Java
+- **Estrutura de dados**: **Dicionário/mapa com timestamps** para acompanhar os tempos de uso.
+- **Funções principais**:
+    - Acompanhamento das faltas de página e substituição das páginas.
+
+---
+
+## Como Executar os Códigos
+
+### Questão 1 (C):
+1. Compile o código utilizando:
+   ```bash
+   gcc alocacao.c -o alocacao

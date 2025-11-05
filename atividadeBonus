@@ -1,0 +1,68 @@
+from collections import deque
+
+# Função para implementar o algoritmo FIFO
+def fifo_algorithm(num_frames, references):
+    frames = []
+    page_faults = 0
+    for page in references:
+        if page not in frames:
+            if len(frames) < num_frames:
+                frames.append(page)
+            else:
+                frames.pop(0)  # Substitui a página mais antiga
+                frames.append(page)
+            page_faults += 1
+    return page_faults
+
+# Função para implementar o algoritmo LRU
+def lru_algorithm(num_frames, references):
+    frames = []
+    page_faults = 0
+    timestamps = {}  # Armazena os tempos de uso de cada página
+    
+    for i, page in enumerate(references):
+        # Se a página não estiver na memória
+        if page not in frames:
+            if len(frames) < num_frames:
+                frames.append(page)
+            else:
+                # Encontrar a página menos recentemente usada
+                lru_page = min(timestamps, key=timestamps.get)
+                frames.remove(lru_page)
+                frames.append(page)
+            page_faults += 1
+        
+        # Atualiza o timestamp da página
+        timestamps[page] = i
+    
+    return page_faults
+
+# Função para comparar LRU e FIFO
+def compare_algorithms(num_frames, references):
+    # Resultados do algoritmo FIFO
+    fifo_faults = fifo_algorithm(num_frames, references)
+    fifo_rate = fifo_faults / len(references) * 100
+    
+    # Resultados do algoritmo LRU
+    lru_faults = lru_algorithm(num_frames, references)
+    lru_rate = lru_faults / len(references) * 100
+    
+    # Exibindo a comparação
+    print(f"Comparativo de Algoritmos (FIFO vs LRU):")
+    print(f"  Número de frames: {num_frames}")
+    print(f"  Total de Referências: {len(references)}")
+    print(f"  Algoritmo FIFO:")
+    print(f"    Faltas de página: {fifo_faults}")
+    print(f"    Taxa de faltas de página: {fifo_rate:.2f}%")
+    
+    print(f"\n  Algoritmo LRU:")
+    print(f"    Faltas de página: {lru_faults}")
+    print(f"    Taxa de faltas de página: {lru_rate:.2f}%")
+
+# Função principal para rodar o código
+if __name__ == "__main__":
+    # Exemplo de entrada
+    num_frames = 3  # Número de frames (páginas) na memória
+    references = [7, 0, 1, 2, 0, 3, 0, 4, 2, 3]  # Sequência de referências
+    
+    compare_algorithms(num_frames, references)

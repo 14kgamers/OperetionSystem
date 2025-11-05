@@ -114,9 +114,3 @@ Implementar o algoritmo de substituição de página **LRU** (Least Recently Use
 
 ---
 
-## Como Executar os Códigos
-
-### Questão 1 (C):
-1. Compile o código utilizando:
-   ```bash
-   gcc alocacao.c -o alocacao
